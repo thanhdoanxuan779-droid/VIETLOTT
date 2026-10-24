@@ -102,6 +102,10 @@ button{border:0;outline:0}
   overflow:hidden;
 }
 
+/* VIETLOTT chỉ có một nhóm nên ẩn cột điều hướng dư thừa. */
+.station-content .region-sidebar{display:none}
+.station-content .stations{width:100%}
+
 .region-sidebar{
   width:62px;
   flex:none;
@@ -154,16 +158,17 @@ button{border:0;outline:0}
 .station-grid{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:4px;
+  gap:7px;
 }
 
 .station-card{
   position:relative;
-  height:70px;
+  height:82px;
   background:#fff;
-  border-radius:8px;
+  border-radius:12px;
   text-align:left;
-  padding:6px;
+  padding:9px;
+  box-shadow:0 4px 12px rgba(32,91,128,.07);
 }
 
 .station-card:active{transform:scale(.98)}
@@ -175,15 +180,15 @@ button{border:0;outline:0}
 }
 
 .station-name{
-  margin-top:3px;
-  font-size:10px;
+  margin-top:4px;
+  font-size:11px;
   font-weight:900;
 }
 
 .station-day{
-  margin-top:3px;
+  margin-top:4px;
   color:#888;
-  font-size:6.5px;
+  font-size:7px;
 }
 
 .station-circle{
@@ -213,7 +218,7 @@ button{border:0;outline:0}
 }
 
 .cau-header{
-  height:34px;
+  height:40px;
   flex:none;
   background:#fff;
   border-radius:7px;
@@ -252,9 +257,10 @@ button{border:0;outline:0}
   width:100%;
   flex:none;
   margin-bottom:4px;
-  background:#fff;
-  border:1px solid #cfd5dc;
-  border-radius:7px;
+  background:linear-gradient(135deg,#ffffff 0%,#f8fbff 100%);
+  border:1px solid #d7e3ee;
+  border-radius:12px;
+  box-shadow:0 4px 14px rgba(32,91,128,.08);
   overflow:hidden;
 }
 
@@ -330,6 +336,58 @@ button{border:0;outline:0}
   letter-spacing:1px;
 }
 
+.jackpot-card{
+  width:100%;
+  min-height:46px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  padding:7px 10px;
+  margin:0 0 5px;
+  border-radius:11px;
+  color:#fff;
+  background:linear-gradient(135deg,#172554,#2563eb 58%,#38bdf8);
+  box-shadow:0 5px 16px rgba(37,99,235,.2);
+}
+
+.jackpot-label{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:.3px;
+}
+
+.jackpot-label span{
+  color:#bfdbfe;
+  font-size:6.5px;
+  font-weight:700;
+}
+
+.jackpot-value{
+  text-align:right;
+  font-size:13px;
+  font-weight:950;
+  white-space:nowrap;
+}
+
+.jackpot-second{
+  margin-top:2px;
+  color:#e0f2fe;
+  font-size:8px;
+  font-weight:800;
+  text-align:right;
+  white-space:nowrap;
+}
+
+.jackpot-date{
+  color:#dbeafe;
+  font-size:6.5px;
+  text-align:right;
+}
+
 #dbNumber{
   color:#d00000;
 }
@@ -387,10 +445,10 @@ button{border:0;outline:0}
 
 .open-input{
   width:100%;
-  height:27px;
+  height:30px;
   flex:none;
   margin-bottom:4px;
-  border-radius:6px;
+  border-radius:9px;
   background:#fff;
   color:#159eea;
   font-size:7px;
@@ -405,7 +463,7 @@ button{border:0;outline:0}
 }
 
 .position-column{
-  width:50px;
+  width:44px;
   flex:none;
   background:#fff;
   border-radius:7px;
@@ -415,8 +473,8 @@ button{border:0;outline:0}
 
 .position-btn{
   width:100%;
-  height:37px;
-  min-height:37px;
+  height:34px;
+  min-height:34px;
   padding:2px;
   background:#fff;
   color:#555;
@@ -457,7 +515,7 @@ button{border:0;outline:0}
 }
 
 .cau-tab{
-  height:28px;
+  height:30px;
   border-radius:6px;
   background:#fff;
   color:#666;
@@ -466,7 +524,7 @@ button{border:0;outline:0}
 }
 
 .cau-tab.active{
-  background:#159eea;
+  background:linear-gradient(135deg,#159eea,#2563eb);
   color:#fff;
 }
 
@@ -474,8 +532,10 @@ button{border:0;outline:0}
   flex:1;
   min-height:0;
   margin-top:3px;
-  background:#dff3ff;
-  border-radius:7px;
+  background:linear-gradient(180deg,#e7f7ff 0%,#d8f0ff 100%);
+  border:1px solid #c8e6f7;
+  border-radius:11px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.8);
   overflow-x:hidden;
   overflow-y:auto;
   padding:6px;
@@ -998,6 +1058,18 @@ grid-template-columns:1fr 2fr;
 
   </div>
 
+  <div class="jackpot-card" id="jackpotCard">
+    <div class="jackpot-label">
+      <strong id="jackpotGame">JACKPOT</strong>
+      <span id="jackpotLabel">Giá trị kỳ mới nhất</span>
+    </div>
+    <div>
+      <div class="jackpot-value" id="jackpotValue">Đang cập nhật…</div>
+      <div class="jackpot-second" id="jackpotSecond"></div>
+      <div class="jackpot-date" id="jackpotDate"></div>
+    </div>
+  </div>
+
   <button type="button" class="open-input" id="openInput">
     NHẬP DỮ LIỆU
   </button>
@@ -1351,6 +1423,21 @@ const g1Number=
 const resultDate=
   document.getElementById("resultDate");
 
+const jackpotGame=
+  document.getElementById("jackpotGame");
+
+const jackpotValue=
+  document.getElementById("jackpotValue");
+
+const jackpotSecond=
+  document.getElementById("jackpotSecond");
+
+const jackpotLabel=
+  document.getElementById("jackpotLabel");
+
+const jackpotDate=
+  document.getElementById("jackpotDate");
+
 const dbHistory=
   document.getElementById("dbHistory");
 
@@ -1373,6 +1460,147 @@ const predictStats=
   document.getElementById("predictStats");
 
 let prediction="";
+
+const JACKPOT_STORE_KEY="VIETLOTT_JACKPOT_CACHE";
+
+function loadJackpotCache(){
+  try{
+    const raw=localStorage.getItem(JACKPOT_STORE_KEY);
+    const data=raw ? JSON.parse(raw) : {};
+    return data && typeof data==="object" ? data : {};
+  }catch(e){
+    return {};
+  }
+}
+
+function saveJackpotCache(data){
+  try{
+    localStorage.setItem(
+      JACKPOT_STORE_KEY,
+      JSON.stringify(data||{})
+    );
+  }catch(e){
+    console.warn("Không lưu được Jackpot:",e);
+  }
+}
+
+function syncJackpotCache(){
+  const rows=onlineStore[currentStation]?.db || [];
+  if(!rows.length){
+    return loadJackpotCache();
+  }
+
+  const cache=loadJackpotCache();
+  const old=cache[currentStation] || {};
+  const items={
+    ...(old.items||{})
+  };
+  let changed=false;
+
+  // Lưu từng kỳ, không chỉ lưu một Jackpot cuối cùng.
+  rows.forEach(row=>{
+    if(!row?.sourceDate || !row?.jackpot){
+      return;
+    }
+
+    const amount=typeof row.jackpot==="object"
+      ? row.jackpot?.amount
+      : row.jackpot;
+
+    if(!amount){
+      return;
+    }
+
+    const next={
+      sourceDate:row.sourceDate,
+      sourceDateText:row.sourceDateText||"",
+      amount:String(amount),
+      label:
+        typeof row.jackpot==="object"
+          ? row.jackpot.label||"Jackpot"
+          : "Jackpot",
+      jackpot2:
+        typeof row.jackpot==="object"
+          ? row.jackpot.jackpot2||null
+          : null,
+      updatedAt:Date.now()
+    };
+
+    if(
+      !items[row.sourceDate] ||
+      items[row.sourceDate].amount!==next.amount ||
+      items[row.sourceDate].label!==next.label ||
+      items[row.sourceDate].jackpot2?.amount!==next.jackpot2?.amount
+    ){
+      items[row.sourceDate]=next;
+      changed=true;
+    }
+  });
+
+  const latest=rows.find(row=>
+    row?.sourceDate &&
+    items[row.sourceDate]
+  );
+
+  if(changed || !old.items){
+    cache[currentStation]={
+      ...old,
+      ...(
+        latest && items[latest.sourceDate]
+          ? items[latest.sourceDate]
+          : {}
+      ),
+      items,
+      updatedAt:Date.now()
+    };
+    saveJackpotCache(cache);
+  }
+
+  return cache;
+}
+
+function updateJackpot(){
+  const rows=
+    onlineStore[currentStation]?.db || [];
+
+  const latest=rows[0];
+  const cache=syncJackpotCache();
+  const saved=cache[currentStation];
+  const amount=saved?.amount;
+
+  if(jackpotGame){
+    jackpotGame.textContent=
+      currentStation==="power655"
+        ? "POWER 6/55 JACKPOT"
+        : "MEGA 6/45 JACKPOT";
+  }
+
+  if(jackpotValue){
+    jackpotValue.textContent=
+      amount || "Chưa có dữ liệu";
+  }
+
+  if(jackpotLabel){
+    jackpotLabel.textContent=
+      saved?.jackpot2?.amount
+        ? "Jackpot 1 / Jackpot 2 · kỳ mới nhất"
+        : "Jackpot kỳ mới nhất";
+  }
+
+  if(jackpotSecond){
+    jackpotSecond.textContent=
+      saved?.jackpot2?.amount
+        ? "JP2: "+saved.jackpot2.amount
+        : "";
+  }
+
+  if(jackpotDate){
+    jackpotDate.textContent=
+      saved?.sourceDateText
+        ? "Kỳ "+saved.sourceDateText
+        : "";
+  }
+}
 
 /* =====================================================
    STORAGE
@@ -1619,6 +1847,10 @@ async function syncOnlineResults(){
 
           game,
 
+          jackpot:
+            raw.jackpot ||
+            "",
+
           drawId:
             drawId
 
@@ -1652,6 +1884,8 @@ async function syncOnlineResults(){
       }
 
     };
+
+    updateJackpot();
 
     if(
       cauScreen &&
@@ -1817,11 +2051,20 @@ function startAutoSync(){
     clearInterval(autoSyncTimer);
   }
 
-  // Chỉ đồng bộ 1 lần khi mở app.
+  // Đồng bộ ngay khi mở app.
   syncOnlineResults();
 
-  // KHÔNG gọi Worker định kỳ nữa.
-  autoSyncTimer=null;
+  // Đồng bộ định kỳ để nhận kết quả mới khi app được mở lâu.
+  autoSyncTimer=setInterval(()=>{
+    syncOnlineResults();
+  },10*60*1000);
+
+  // Khi quay lại app, đồng bộ lại ngay.
+  document.addEventListener("visibilitychange",()=>{
+    if(document.visibilityState==="visible"){
+      syncOnlineResults();
+    }
+  });
 }
 /* =====================================================
    ĐẢM BẢO DỮ LIỆU
@@ -2045,6 +2288,7 @@ function loadLatest(){
   }
 
   renderHistory(dbHistory,db);
+  updateJackpot();
   drawCau();
 
 }
