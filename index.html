@@ -255,6 +255,7 @@ button{border:0;outline:0}
 
 .result-top{
   width:100%;
+  box-sizing:border-box;
   flex:none;
   margin-bottom:4px;
   background:linear-gradient(135deg,#ffffff 0%,#f8fbff 100%);
@@ -264,86 +265,67 @@ button{border:0;outline:0}
   overflow:hidden;
 }
 
-.result-date-row{
+.selected-latest{
   width:100%;
-  height:29px;
+  box-sizing:border-box;
+  min-height:52px;
   display:flex;
+  flex-direction:column;
   align-items:center;
   justify-content:center;
-  border-bottom:1px solid #cfd5dc;
-}
-
-.result-date{
-  color:#777;
-  font-size:11px;
-  font-weight:800;
-}
-
-.result-columns{
-  width:100%;
-  display:grid;
-  grid-template-columns:1fr;
-}
-
-.result-box{
-  min-width:0;
-  background:#fff;
-  overflow:hidden;
-}
-
-#dbResult{
-  border-right:0;
-  width:100%;
-}
-
-.result-title{
-  width:100%;
-  height:27px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:9px;
-  font-weight:900;
-  white-space:nowrap;
-}
-
-#dbResult .result-title{
+  gap:3px;
+  padding:8px 10px;
+  margin-bottom:5px;
+  border-radius:10px;
   color:#d00000;
+  background:#fff;
+  border:1px solid #fecaca;
+  box-shadow:0 4px 12px rgba(185,28,28,.08);
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
 }
+.selected-latest:active{transform:scale(.99);background:#fff1f2}
+.selected-latest-title{font-size:8px;font-weight:950}
+.selected-latest-number{max-width:100%;font-size:clamp(13px,4.4vw,18px);font-weight:950;letter-spacing:.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.selected-latest-date{font-size:7px;font-weight:800;color:#991b1b}
 
-#g1Result .result-title{
-  color:#111;
-}
-
-.result-current{
+.top-history-list{
+  display:none;
   width:100%;
-  height:39px;
-  min-height:39px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  box-sizing:border-box;
+  max-height:210px;
+  overflow-y:auto;
+  margin-top:5px;
+  border:1px solid #fecaca;
+  border-radius:9px;
+  background:#fff;
 }
 
-.result-number{
-  display:flex;
+.top-history-list.open{display:block}
+.top-history-row{
+  display:grid;
+  grid-template-columns:88px minmax(0,1fr);
   align-items:center;
-  justify-content:center;
-  width:100%;
-  height:39px;
-  font-size:19px;
-  line-height:39px;
+  min-height:42px;
+  column-gap:12px;
+  padding:6px 10px;
+  border-top:1px solid #fee2e2;
+  color:#d00000;
+  font-size:clamp(13px,4vw,17px);
   font-weight:900;
-  letter-spacing:1px;
 }
+.top-history-row:first-child{border-top:0}
+.top-history-date{font-size:clamp(11px,3.2vw,15px);font-weight:900;color:#991b1b;text-align:center;white-space:nowrap}
+.top-history-row>span:last-child{min-width:0;overflow:hidden;padding-left:4px;text-align:left;text-overflow:ellipsis;white-space:nowrap}
 
 .jackpot-card{
   width:100%;
-  min-height:46px;
+  min-height:72px;
   display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:8px;
-  padding:7px 10px;
+  flex-direction:column;
+  align-items:stretch;
+  gap:6px;
+  padding:8px;
   margin:0 0 5px;
   border-radius:11px;
   color:#fff;
@@ -353,7 +335,9 @@ button{border:0;outline:0}
 
 .jackpot-label{
   display:flex;
-  flex-direction:column;
+  flex-direction:row;
+  align-items:center;
+  justify-content:space-between;
   gap:2px;
   font-size:8px;
   font-weight:900;
@@ -367,78 +351,46 @@ button{border:0;outline:0}
 }
 
 .jackpot-value{
-  text-align:right;
-  font-size:13px;
+  text-align:center;
+  font-size:12px;
   font-weight:950;
   white-space:nowrap;
 }
 
+.jackpot-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:6px;
+}
+
+.jackpot-box{
+  min-width:0;
+  padding:6px 4px;
+  border:1px solid rgba(255,255,255,.28);
+  border-radius:8px;
+  background:rgba(15,23,42,.22);
+}
+
+.jackpot-box-title{
+  margin-bottom:2px;
+  color:#dbeafe;
+  font-size:7px;
+  font-weight:900;
+  text-align:center;
+}
+
 .jackpot-second{
-  margin-top:2px;
-  color:#e0f2fe;
-  font-size:8px;
+  color:#fff;
+  font-size:12px;
   font-weight:800;
-  text-align:right;
+  text-align:center;
   white-space:nowrap;
 }
 
 .jackpot-date{
   color:#dbeafe;
   font-size:6.5px;
-  text-align:right;
-}
-
-#dbNumber{
-  color:#d00000;
-}
-
-#g1Number{
-  color:#111;
-}
-
-.history{
-  display:none;
-  max-height:150px;
-  overflow-y:auto;
-}
-
-.result-box.open .result-current{
-  display:none;
-}
-
-.result-box.open .history{
-  display:block;
-}
-
-.history-row{
-  height:22px;
-  border-top:1px solid #eee;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-.history-number{
-  font-size:9px;
-  font-weight:900;
-  min-width:48px;
-  text-align:left;
-}
-
-.history-date{
-  width:75px;
-  color:#888;
-  font-size:7px;
-  text-align:right;
-  margin-right:7px;
-}
-
-#dbHistory .history-number{
-  color:#d00000;
-}
-
-#g1History .history-number{
-  color:#111;
+  text-align:center;
 }
 
 /* ================= NHẬP ================= */
@@ -1034,27 +986,13 @@ grid-template-columns:1fr 2fr;
 
   <div class="result-top">
 
-    <div class="result-date-row">
-      <span class="result-date" id="resultDate"></span>
+    <div class="selected-latest" id="selectedLatest">
+      <div class="selected-latest-title" id="selectedLatestTitle">KẾT QUẢ MỚI NHẤT</div>
+      <div class="selected-latest-number" id="selectedLatestNumber">—</div>
+      <div class="selected-latest-date" id="selectedLatestDate"></div>
     </div>
 
-    <div class="result-columns">
-
-      <div class="result-box" id="dbResult" style="grid-column:1 / -1;">
-
-        <div class="result-title" id="resultGameTitle">
-          KẾT QUẢ
-        </div>
-
-        <div class="result-current">
-          <span class="result-number" id="dbNumber">—</span>
-        </div>
-
-        <div class="history" id="dbHistory"></div>
-
-      </div>
-
-    </div>
+    <div class="top-history-list" id="topHistoryList"></div>
 
   </div>
 
@@ -1063,11 +1001,17 @@ grid-template-columns:1fr 2fr;
       <strong id="jackpotGame">JACKPOT</strong>
       <span id="jackpotLabel">Giá trị kỳ mới nhất</span>
     </div>
-    <div>
-      <div class="jackpot-value" id="jackpotValue">Đang cập nhật…</div>
-      <div class="jackpot-second" id="jackpotSecond"></div>
-      <div class="jackpot-date" id="jackpotDate"></div>
+    <div class="jackpot-grid">
+      <div class="jackpot-box">
+        <div class="jackpot-box-title">JACKPOT 1</div>
+        <div class="jackpot-value" id="jackpotValue">Đang cập nhật…</div>
+      </div>
+      <div class="jackpot-box">
+        <div class="jackpot-box-title">JACKPOT 2</div>
+        <div class="jackpot-second" id="jackpotSecond">—</div>
+      </div>
     </div>
+    <div class="jackpot-date" id="jackpotDate"></div>
   </div>
 
   <button type="button" class="open-input" id="openInput">
@@ -1322,11 +1266,14 @@ const STORE_KEY = "VIETLOTT_CAU";
 const VIETLOTT_API=
   "https://thanhdoan799.thanhdoanxuan799.workers.dev/latest";
 
+const VIETLOTT_RUN_API=
+  "https://thanhdoan799.thanhdoanxuan799.workers.dev/run";
+
 
 let currentRegion="vietlott";
 let currentDay="ALL";
 let currentStation="mega645";
-let currentPosition="dbVan";
+let currentPosition="digit0";
 let currentType="tx";
 
 let autoSyncTimer=null;
@@ -1414,14 +1361,24 @@ const stationName=
 const stationDay=
   document.getElementById("stationDay");
 
-const dbNumber=
-  document.getElementById("dbNumber");
+const topHistoryList=
+  document.getElementById("topHistoryList");
+
+const selectedLatestTitle=
+  document.getElementById("selectedLatestTitle");
+
+const selectedLatest=
+  document.getElementById("selectedLatest");
+
+const selectedLatestNumber=
+  document.getElementById("selectedLatestNumber");
+
+const selectedLatestDate=
+  document.getElementById("selectedLatestDate");
 
 const g1Number=
   document.getElementById("g1Number");
 
-const resultDate=
-  document.getElementById("resultDate");
 
 const jackpotGame=
   document.getElementById("jackpotGame");
@@ -1438,8 +1395,6 @@ const jackpotLabel=
 const jackpotDate=
   document.getElementById("jackpotDate");
 
-const dbHistory=
-  document.getElementById("dbHistory");
 
 const g1History=
   document.getElementById("g1History");
@@ -1590,8 +1545,25 @@ function updateJackpot(){
   if(jackpotSecond){
     jackpotSecond.textContent=
       saved?.jackpot2?.amount
-        ? "JP2: "+saved.jackpot2.amount
-        : "";
+        ? saved.jackpot2.amount
+        : currentStation==="power655"
+          ? "Chưa có dữ liệu"
+          : "Không áp dụng";
+
+    const jackpot2Box=jackpotSecond.closest(".jackpot-box");
+    const jackpotGrid=jackpotSecond.closest(".jackpot-grid");
+    if(jackpot2Box){
+      jackpot2Box.style.display=
+        currentStation==="power655"
+          ? "block"
+          : "none";
+    }
+    if(jackpotGrid){
+      jackpotGrid.style.gridTemplateColumns=
+        currentStation==="power655"
+          ? "repeat(2,minmax(0,1fr))"
+          : "1fr";
+    }
   }
 
   if(jackpotDate){
@@ -1734,6 +1706,30 @@ async function syncOnlineResults(){
   autoSyncBusy=true;
 
   try{
+
+    // Kích hoạt Worker để lấy các kỳ mới trước khi đọc /latest.
+    // Nếu Worker tạm thời bận/lỗi, vẫn đọc dữ liệu gần nhất bên dưới.
+    try{
+      const runController=new AbortController();
+      const runTimeout=setTimeout(
+        ()=>runController.abort(),
+        20000
+      );
+      await fetch(
+        VIETLOTT_RUN_API+"?from=app&t="+Date.now(),
+        {
+          method:"GET",
+          cache:"no-store",
+          signal:runController.signal
+        }
+      );
+      clearTimeout(runTimeout);
+    }catch(runError){
+      console.warn(
+        "Worker run bỏ qua, đọc dữ liệu gần nhất:",
+        runError
+      );
+    }
 
     const res=await fetch(
       VIETLOTT_API+"?t="+Date.now(),
@@ -2171,6 +2167,7 @@ function openStation(day,station){
   currentPosition="digit0";
   currentType="tx";
   prediction="";
+  topHistoryList?.classList.remove("open");
 
   const info=STATIONS.vietlott.games.find(x=>x.code===station);
 
@@ -2269,81 +2266,61 @@ function loadLatest(){
   const data=ensureCurrent();
   const db=newest(data.db,"db");
 
-  resultGameTitle.textContent=
-    currentStation==="power655"
-      ?"POWER 6/55 — KẾT QUẢ"
-      :"MEGA 6/45 — KẾT QUẢ";
-
-  if(db.length){
-    const n=String(db[0].number||"");
-    const pairSize=currentStation==="power655" ? 14 : 12;
-    dbNumber.textContent=
-      n.length===pairSize
-        ?(n.match(/\d{2}/g)||[]).join(" - ")
-        :n;
-    resultDate.textContent=db[0].sourceDateText||"";
-  }else{
-    dbNumber.textContent="—";
-    resultDate.textContent="";
+  if(selectedLatestTitle){
+    selectedLatestTitle.textContent=
+      currentStation==="power655"
+        ?"POWER 6/55 — KẾT QUẢ MỚI NHẤT"
+        :"MEGA 6/45 — KẾT QUẢ MỚI NHẤT";
   }
-
-  renderHistory(dbHistory,db);
+  if(selectedLatestNumber){
+    selectedLatestNumber.textContent=
+      db[0] ? formatVietlottData(db[0].number) : "—";
+  }
+  if(selectedLatestDate){
+    selectedLatestDate.textContent=db[0]?.sourceDateText||"";
+  }
+  renderTopHistory(db);
   updateJackpot();
   drawCau();
 
 }
 
-/* =====================================================
-   LỊCH SỬ
-===================================================== */
+function renderTopHistory(rows){
+  if(!topHistoryList) return;
+  topHistoryList.innerHTML="";
 
-function renderHistory(box,list){
+  // Kỳ mới nhất đã nằm ở thẻ lớn phía trên, không lặp lại trong danh sách.
+  const historyRows=rows.slice(1);
 
-  box.innerHTML="";
+  if(!historyRows.length){
+    topHistoryList.innerHTML=
+      '<div class="top-history-row"><span>—</span><span>Chưa có kỳ cũ</span></div>';
+    return;
+  }
 
-  list.forEach(item=>{
-
-    const row=
-      document.createElement("div");
-
-    row.className="history-row";
-
-    const date=
-      item.sourceDateText||
-      "";
-
-    row.innerHTML=`
-
-      <span class="history-date">
-        ${date}
-      </span>
-
-      <span class="history-number">
-  ${formatVietlottData(item.number)}
-</span>
-
+  historyRows.forEach(row=>{
+    const item=document.createElement("div");
+    item.className="top-history-row";
+    item.innerHTML=`
+      <span class="top-history-date">${row.sourceDateText||""}</span>
+      <span>${formatVietlottData(row.number)}</span>
     `;
-
-    box.appendChild(row);
-
+    topHistoryList.appendChild(item);
   });
-
 }
 
 /* =====================================================
    MỞ LỊCH SỬ
 ===================================================== */
 
-document
-  .getElementById("dbResult")
-  .addEventListener(
-    "click",
-    function(){
-
-      this.classList.toggle("open");
-
-    }
-  );
+selectedLatest.addEventListener(
+  "click",
+  function(){
+    // Chỉ mở danh sách của game hiện tại, không dùng chung Mega/Power.
+    renderTopHistory(newest(ensureCurrent().db,"db"));
+    topHistoryList.classList.toggle("open");
+  }
+);
 
 /* =====================================================
    VỊ TRÍ CẦU
